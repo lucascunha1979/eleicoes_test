@@ -13,7 +13,7 @@
 :root{
   --black:#0C0C0C;--white:#F8F8F6;--red:#C0001A;--red-dim:rgba(192,0,26,.10);
   --g50:#F4F4F2;--g100:#EBEBEA;--g200:#D8D8D6;--g400:#9A9A98;--g600:#585856;--g700:#383836;
-  --hh:54px;--lw:268px;--rw:352px;
+  --hh:54px;--lw:272px;--rw:356px;
   --serif:'Playfair Display',Georgia,serif;--sans:'IBM Plex Sans','Helvetica Neue',sans-serif;
   --r:3px;--e:.16s ease;
 }
@@ -21,114 +21,97 @@
 html,body{height:100%;overflow:hidden}
 body{font-family:var(--sans);background:var(--white);color:var(--black);font-size:13px;-webkit-font-smoothing:antialiased}
 button{font-family:inherit;cursor:pointer}
-
-/* ── Header ── */
-#hdr{height:var(--hh);background:var(--black);display:flex;align-items:center;padding:0 16px;gap:16px;border-bottom:3px solid var(--red);flex-shrink:0;z-index:1000;position:relative}
+#hdr{height:var(--hh);background:var(--black);display:flex;align-items:center;padding:0 16px;gap:14px;border-bottom:3px solid var(--red);flex-shrink:0;z-index:1000;position:relative}
 #logo{font-family:var(--serif);font-size:16px;font-weight:900;color:var(--white);white-space:nowrap;flex-shrink:0;line-height:1;letter-spacing:.3px}
 #logo em{color:var(--red);font-style:normal}
-#logo sup{font-family:var(--sans);font-size:8.5px;font-weight:500;color:var(--g400);letter-spacing:2px;text-transform:uppercase;margin-left:3px;vertical-align:middle}
+#logo sup{font-family:var(--sans);font-size:8px;font-weight:500;color:var(--g400);letter-spacing:2px;text-transform:uppercase;margin-left:3px;vertical-align:middle}
 .hdiv{width:1px;height:20px;background:#2A2A2A;flex-shrink:0}
 #tabs{display:flex;gap:1px}
 .tab{padding:6px 14px;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--g400);background:transparent;border:none;transition:color var(--e);position:relative}
 .tab::after{content:'';position:absolute;bottom:-5px;left:14px;right:14px;height:2px;background:var(--red);transform:scaleX(0);transition:transform var(--e);border-radius:1px}
 .tab.on{color:var(--white)}.tab.on::after{transform:scaleX(1)}.tab:hover{color:#ccc}
-
-/* Filter chip in header */
-#filter-chip{display:none;align-items:center;gap:6px;background:#1C1C1C;border:1px solid var(--red);padding:3px 10px;border-radius:20px;font-size:10px;color:var(--white);font-weight:500;letter-spacing:.4px}
-#filter-chip.on{display:flex}
-#filter-chip button{background:none;border:none;color:var(--g400);font-size:13px;padding:0;line-height:1;margin-left:2px}
-#filter-chip button:hover{color:var(--white)}
-#scope{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--g400);font-size:10.5px}
-#scope-badge{background:#1C1C1C;border:1px solid #2E2E2E;color:var(--white);padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:.8px;font-weight:500;transition:all var(--e)}
+#filter-pill{display:none;align-items:center;gap:6px;background:#1A1A1A;border:1px solid var(--red);padding:3px 10px 3px 8px;border-radius:20px;font-size:10px;color:var(--white);font-weight:500;white-space:nowrap}
+#filter-pill.on{display:flex}
+#filter-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+#filter-x{background:none;border:none;color:var(--g400);font-size:13px;padding:0;line-height:1;margin-left:2px;cursor:pointer}
+#filter-x:hover{color:var(--white)}
+#scope{margin-left:auto;display:flex;align-items:center;gap:7px;color:var(--g400);font-size:10px;white-space:nowrap}
+#scope-badge{background:#1C1C1C;border:1px solid #2E2E2E;color:var(--white);padding:3px 10px;border-radius:20px;font-size:10px;letter-spacing:.7px;font-weight:500;transition:all var(--e)}
 #scope-badge.on{border-color:var(--red);color:var(--red)}
-
-/* ── Layout ── */
 #app{display:flex;height:calc(100vh - var(--hh))}
-
-/* ── Left Panel ── */
 #lp{width:var(--lw);background:var(--white);border-right:1px solid var(--g200);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
 #lp::-webkit-scrollbar{width:3px}
 #lp::-webkit-scrollbar-thumb{background:var(--g200)}
-.ps{padding:12px 14px 11px;border-bottom:1px solid var(--g100)}
+.ps{padding:12px 14px 10px;border-bottom:1px solid var(--g100)}
 .slabel{font-size:8px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--g400);margin-bottom:8px}
 .chips{display:flex;flex-wrap:wrap;gap:3px}
-.chip{padding:5px 9px;font-size:11px;font-weight:500;background:var(--g100);color:var(--g600);border:1px solid var(--g200);border-radius:var(--r);transition:all var(--e);white-space:nowrap;line-height:1}
+.chip{padding:5px 9px;font-size:11px;font-weight:500;background:var(--g100);color:var(--g600);border:1px solid var(--g200);border-radius:var(--r);transition:all var(--e);white-space:nowrap;line-height:1;cursor:pointer}
 .chip:hover{background:var(--g200);color:var(--black)}
 .chip.on{background:var(--black);color:var(--white);border-color:var(--black)}
 #legend-wrap{padding:12px 14px;flex:1}
-.leg-title{font-size:8px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--g400);margin-bottom:9px}
-#legend-items{display:flex;flex-direction:column;gap:4px}
-.li{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--g700);cursor:pointer;border-radius:var(--r);padding:3px 4px;transition:all var(--e)}
-.li:hover,.li.active{background:var(--g100)}
-.li.active{box-shadow:inset 2px 0 0 var(--red)}
-.li-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.li-info{flex:1;min-width:0}
-.li-nome{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px}
-.li-partido{font-size:9px;color:var(--g400);margin-top:1px}
-.li-count{font-size:10px;color:var(--g400);font-weight:600;white-space:nowrap}
+.leg-title{font-size:8px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--g400);margin-bottom:8px}
+#legend-items{display:flex;flex-direction:column;gap:3px}
+.li{display:flex;align-items:center;gap:7px;cursor:pointer;border-radius:var(--r);padding:4px 5px;transition:all var(--e)}
+.li:hover{background:var(--g50)}
+.li.active{background:var(--g100);box-shadow:inset 2px 0 0 var(--red)}
+.li-sw{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.li-nome{font-size:11px;font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.li-part{font-size:9px;color:var(--g400)}
+.li-r{text-align:right;flex-shrink:0}
+.li-pct{font-size:11px;font-weight:700}
+.li-mun{font-size:9px;color:var(--g400);margin-top:1px}
 #lp-foot{padding:9px 14px;border-top:1px solid var(--g100);font-size:9px;color:var(--g400);line-height:1.6}
-
-/* ── Map ── */
 #map-wrap{flex:1;position:relative;overflow:hidden}
 #map{width:100%;height:100%}
 #maplabel{position:absolute;top:10px;left:10px;z-index:500;background:rgba(248,248,246,.96);border:1px solid var(--g200);border-left:3px solid var(--red);padding:7px 11px;border-radius:var(--r);pointer-events:none;backdrop-filter:blur(4px)}
-#ml-cargo{font-size:8.5px;font-weight:600;text-transform:uppercase;letter-spacing:.9px;color:var(--g400)}
+#ml-cargo{font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--g400)}
 #ml-titulo{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--black);line-height:1.2;margin-top:2px}
 #loading{position:absolute;inset:0;background:rgba(248,248,246,.88);display:flex;align-items:center;justify-content:center;z-index:700;opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(2px)}
 #loading.on{opacity:1;pointer-events:all}
 .spinner{width:28px;height:28px;border:2.5px solid var(--g200);border-top-color:var(--red);border-radius:50%;animation:spin .65s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* ── Right Panel ── */
 #rp{width:var(--rw);background:var(--white);border-left:1px solid var(--g200);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0}
 #rp::-webkit-scrollbar{width:3px}
 #rp::-webkit-scrollbar-thumb{background:var(--g200)}
 .rp-hdr{padding:12px 14px 10px;border-bottom:1px solid var(--g100);position:sticky;top:0;background:var(--white);z-index:10;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
 .rp-title{font-family:var(--serif);font-size:15px;font-weight:700;line-height:1.2}
 .rp-sub{font-size:10px;color:var(--g400);margin-top:2px}
-.back-btn{font-size:10.5px;font-weight:600;color:var(--red);background:none;border:none;padding:3px 0;white-space:nowrap;flex-shrink:0}
+.back-btn{font-size:10px;font-weight:600;color:var(--red);background:none;border:none;padding:3px 0;white-space:nowrap;flex-shrink:0;cursor:pointer}
 .back-btn:hover{text-decoration:underline}
 .rs{padding:11px 14px;border-bottom:1px solid var(--g100)}
 .rs:last-child{border-bottom:none}
-.rs-title{font-size:8px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--g400);margin-bottom:9px;display:flex;align-items:center;justify-content:space-between}
-
-/* Totals */
+.rs-title{font-size:8px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--g400);margin-bottom:9px}
+.rs-hint{font-size:8px;font-weight:400;letter-spacing:0;color:var(--g400)}
 .tg{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px}
 .titem{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:7px 9px}
 .ti-lbl{font-size:8px;text-transform:uppercase;letter-spacing:.8px;color:var(--g400);font-weight:600;margin-bottom:2px}
-.ti-val{font-family:var(--serif);font-size:13px;font-weight:700;line-height:1}
+.ti-val{font-family:var(--serif);font-size:14px;font-weight:700;line-height:1}
 .ti-sub{font-size:9px;color:var(--g400);margin-top:2px}
-
-/* Candidate / Party cards */
 .ccard{border:1px solid var(--g200);border-radius:var(--r);padding:8px 10px;margin-bottom:4px;display:grid;grid-template-columns:8px 1fr auto;gap:0 8px;align-items:center;position:relative;overflow:hidden;cursor:pointer;transition:background var(--e),border-color var(--e)}
 .ccard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--pc,var(--g200))}
 .ccard:hover{background:var(--g50)}
-.ccard.hl{background:var(--g50);border-color:var(--pc,var(--g200))}
+.ccard.hl{background:var(--g50);border-color:var(--pc)}
 .ccard.filtered{background:var(--red-dim);border-color:var(--red)}
 .cdot{width:7px;height:7px;border-radius:50%;background:var(--pc,var(--g400));flex-shrink:0}
 .cinfo{min-width:0}
 .cnome{font-weight:600;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cpart{font-size:9px;color:var(--g400);margin-top:1px}
-.cstat{grid-column:2/-1;justify-self:start;font-size:8px;font-weight:700;padding:2px 6px;border-radius:2px;margin-top:3px;letter-spacing:.3px}
+.cstat{grid-column:2/-1;justify-self:start;font-size:8px;font-weight:700;padding:2px 6px;border-radius:2px;margin-top:3px}
 .cstat.eleito{background:#E8F5E9;color:#2E7D32}
 .cstat.seg{background:#FFF8E1;color:#E65100}
-.cvotos{text-align:right}
+.cvotos{text-align:right;flex-shrink:0}
 .cpct{font-family:var(--serif);font-size:15px;font-weight:700;line-height:1}
 .cabs{font-size:9px;color:var(--g400);margin-top:1px}
 .cbar-wrap{grid-column:1/-1;height:2px;background:var(--g100);border-radius:1px;margin-top:5px;overflow:hidden}
 .cbar{height:100%;border-radius:1px;background:var(--pc,var(--g400));transition:width .4s}
-
-/* Ranking */
 .rank-list{display:flex;flex-direction:column;gap:2px}
-.ri{display:grid;grid-template-columns:18px 1fr auto;gap:4px;align-items:center;padding:5px 5px;border-radius:var(--r);cursor:pointer;transition:background var(--e)}
+.ri{display:grid;grid-template-columns:18px 1fr auto;gap:4px;align-items:center;padding:5px 4px;border-radius:var(--r);cursor:pointer;transition:background var(--e)}
 .ri:hover{background:var(--g50)}
 .rnum{font-size:9px;font-weight:700;color:var(--g400);text-align:center}
 .rnome{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rpct{font-size:11px;font-weight:700;text-align:right;white-space:nowrap}
 .rbar-wrap{grid-column:2/-1;height:2px;background:var(--g100);border-radius:1px;margin-top:-1px}
 .rbar{height:100%;border-radius:1px}
-
-/* Compare */
 .cmp-item{margin-bottom:8px}
 .cmp-head{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
 .cmp-head strong{font-weight:600}
@@ -136,38 +119,27 @@ button{font-family:inherit;cursor:pointer}
 .cmp-track{height:5px;background:var(--g100);border-radius:3px;overflow:hidden;position:relative}
 .cmp-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .4s}
 .cmp-vals{display:flex;justify-content:space-between;margin-top:2px;font-size:9px;color:var(--g400)}
-
-/* Demographics */
-.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.ditem{background:var(--g50);border:1px solid var(--g100);border-radius:var(--r);padding:7px 9px}
-.dlbl{font-size:8px;text-transform:uppercase;letter-spacing:.8px;color:var(--g400);font-weight:600;margin-bottom:2px}
-.dval{font-size:13px;font-weight:600}
-.demo-bar-wrap{grid-column:1/-1}
-.demo-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:10px}
-.demo-bar-lbl{width:90px;flex-shrink:0;color:var(--g600)}
-.demo-bar-track{flex:1;height:4px;background:var(--g100);border-radius:2px;overflow:hidden}
-.demo-bar-fill{height:100%;border-radius:2px;background:var(--black)}
-.demo-bar-val{width:36px;text-align:right;color:var(--g600);font-weight:600}
-
-/* Chart */
-.chart-wrap{padding:4px 0;position:relative;min-height:180px}
-.chart-empty{text-align:center;color:var(--g400);font-size:11px;padding:20px 0}
-
-/* Empty */
+.demo-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.demo-lbl{width:110px;flex-shrink:0;color:var(--g600);font-size:10px}
+.demo-track{flex:1;height:5px;background:var(--g100);border-radius:3px;overflow:hidden}
+.demo-fill{height:100%;border-radius:3px}
+.demo-val{width:38px;text-align:right;font-weight:600;color:var(--g700);font-size:10px}
+.chart-sec{padding:12px 14px 16px;border-bottom:1px solid var(--g100)}
+.chart-title{font-size:8px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--g400);margin-bottom:10px}
+.chart-wrap{position:relative;height:260px}
+.chart-empty{display:flex;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--g400);font-size:11px}
+.note{background:var(--g50);border:1px solid var(--g100);border-left:3px solid var(--g200);border-radius:var(--r);padding:6px 10px;font-size:10px;color:var(--g600);line-height:1.5;margin-bottom:8px}
 .empty{padding:24px 14px;text-align:center;color:var(--g400);font-size:12px}
 .hidden{display:none!important}
-
-/* Leaflet */
 .leaflet-container{background:#E4E8EE!important;font-family:var(--sans)!important}
 .leaflet-control-zoom{border:1px solid var(--g200)!important;border-radius:var(--r)!important;box-shadow:none!important}
 .leaflet-control-zoom a{color:var(--black)!important}
-.leaflet-tooltip{background:var(--black)!important;color:var(--white)!important;border:none!important;border-radius:var(--r)!important;padding:6px 10px!important;font-family:var(--sans)!important;font-size:11px!important;line-height:1.5!important;box-shadow:0 3px 10px rgba(0,0,0,.25)!important;pointer-events:none!important}
+.leaflet-tooltip{background:var(--black)!important;color:var(--white)!important;border:none!important;border-radius:var(--r)!important;padding:7px 11px!important;font-family:var(--sans)!important;font-size:11px!important;line-height:1.6!important;box-shadow:0 3px 10px rgba(0,0,0,.25)!important;pointer-events:none!important}
 .leaflet-tooltip-top::before{border-top-color:var(--black)!important}
 .leaflet-control-attribution{font-size:9px!important}
 </style>
 </head>
 <body>
-
 <header id="hdr">
   <div id="logo">ATLAS<em>·</em>ELEITORAL <sup>RS</sup></div>
   <div class="hdiv"></div>
@@ -175,16 +147,16 @@ button{font-family:inherit;cursor:pointer}
     <button class="tab on" data-tab="candidatos" onclick="switchTab('candidatos')">Candidatos</button>
     <button class="tab"    data-tab="partidos"   onclick="switchTab('partidos')">Partidos</button>
   </div>
-  <div id="filter-chip">
+  <div id="filter-pill">
+    <div id="filter-dot"></div>
     <span id="filter-label"></span>
-    <button onclick="clearFilter()" title="Limpar filtro">✕</button>
+    <button id="filter-x" onclick="clearFilter()">✕</button>
   </div>
   <div id="scope">
     <span id="scope-icon">🗺</span>
     <span id="scope-badge">RIO GRANDE DO SUL</span>
   </div>
 </header>
-
 <div id="app">
   <aside id="lp">
     <div class="ps">
@@ -194,93 +166,45 @@ button{font-family:inherit;cursor:pointer}
         <button class="chip"    data-tipo="municipal" onclick="setTipo('municipal')">Municipais</button>
       </div>
     </div>
-    <div class="ps">
-      <div class="slabel">Cargo</div>
-      <div class="chips" id="cargo-chips"></div>
-    </div>
-    <div class="ps">
-      <div class="slabel">Ano</div>
-      <div class="chips" id="ano-chips"></div>
-    </div>
-    <div class="ps hidden" id="turno-ps">
-      <div class="slabel">Turno</div>
-      <div class="chips" id="turno-chips"></div>
-    </div>
+    <div class="ps"><div class="slabel">Cargo</div><div class="chips" id="cargo-chips"></div></div>
+    <div class="ps"><div class="slabel">Ano</div><div class="chips" id="ano-chips"></div></div>
+    <div class="ps hidden" id="turno-ps"><div class="slabel">Turno</div><div class="chips" id="turno-chips"></div></div>
     <div id="legend-wrap">
       <div class="leg-title">Legenda — clique para filtrar</div>
-      <div id="legend-items"><div style="font-size:11px;color:var(--g400)">Carregando...</div></div>
+      <div id="legend-items"><div style="font-size:11px;color:var(--g400);padding:4px">Carregando...</div></div>
     </div>
     <div style="flex:1"></div>
     <div id="lp-foot">Fonte: TSE · 2006–2024<br>Clique no município para detalhes</div>
   </aside>
-
   <div id="map-wrap">
     <div id="map"></div>
-    <div id="maplabel">
-      <div id="ml-cargo">Presidente</div>
-      <div id="ml-titulo">2º Turno · 2022</div>
-    </div>
+    <div id="maplabel"><div id="ml-cargo">Presidente</div><div id="ml-titulo">2º Turno · 2022</div></div>
     <div id="loading"><div class="spinner"></div></div>
   </div>
-
-  <aside id="rp">
-    <div id="rp-content"></div>
-  </aside>
+  <aside id="rp"><div id="rp-content"></div></aside>
 </div>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// ═══════════════════════════════════════════
-//  ATLAS ELEITORAL RS  ·  v4
-// ═══════════════════════════════════════════
-const BASE = 'dados';
+const BASE='dados';
+const CARGO_LABEL={presidente:'Presidente',governador:'Governador',senador:'Senador',deputado_federal:'Dep. Federal',deputado_estadual:'Dep. Estadual',prefeito:'Prefeito',vereador:'Vereador'};
+const CARGOS_GERAL=['presidente','governador','senador','deputado_federal','deputado_estadual'];
+const CARGOS_MUNICIPAL=['prefeito','vereador'];
+const ANOS_GERAL=[2006,2010,2014,2018,2022];
+const ANOS_MUNICIPAL=[2008,2012,2016,2020,2024];
+const IS_PROP=c=>['deputado_federal','deputado_estadual','vereador'].includes(c);
+const PC={PT:'#CC0000',PL:'#1E3A7B',PSL:'#1E3A7B',PSDB:'#0095DA',MDB:'#D4920A',PMDB:'#D4920A',PP:'#2B5BA8',PDT:'#B22222',PSOL:'#6B0DAD',REDE:'#2E8B57',NOVO:'#E8600A',UNIÃO:'#15803D',DEM:'#15803D',PRD:'#0D9488',PSD:'#3B82F6',REPUBLICANOS:'#EA580C',PRB:'#EA580C','PCdoB':'#9B1C1C',SOLIDARIEDADE:'#C47E00',AVANTE:'#7C3AED',PODE:'#06B6D4',PTB:'#92400E',PV:'#16A34A',AGIR:'#65A30D',UP:'#DB2777',PSTU:'#BE123C',PCO:'#7F1D1D',CIDADANIA:'#00838F',PSB:'#FF6F00',default:'#6B7280'};
+const cor=p=>{if(!p)return PC.default;const u=p.toUpperCase();return PC[u]||PC[p]||PC.default;};
+const fv=n=>n>=1e6?(n/1e6).toFixed(1).replace('.',',')+' M':n>=1e3?(n/1e3).toFixed(0)+' K':(n||0).toLocaleString('pt-BR');
+const fn=n=>(n||0).toLocaleString('pt-BR');
+const fp=n=>n!=null?n.toFixed(2).replace('.',',')+'%':'—';
+const frc=n=>n!=null?'R$ '+n.toLocaleString('pt-BR',{maximumFractionDigits:0}):'—';
+const sClass=s=>{if(!s)return'';const u=s.toUpperCase();if(u.includes('ELEITO')&&!u.includes('NÃO')&&!u.includes('NAO'))return'eleito';if(u.includes('2º'))return'seg';return'';};
+const sLabel=s=>{const c=sClass(s);return c==='eleito'?'Eleito ✓':c==='seg'?'2º Turno':'';};
+const h2r=(h,a)=>{if(!h||h.length<7)return`rgba(100,100,100,${a})`;const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return`rgba(${r},${g},${b},${a})`;};
 
-const CARGO_LABEL = {
-  presidente:'Presidente',governador:'Governador',senador:'Senador',
-  deputado_federal:'Dep. Federal',deputado_estadual:'Dep. Estadual',
-  prefeito:'Prefeito',vereador:'Vereador'
-};
-const CARGOS_GERAL     = ['presidente','governador','senador','deputado_federal','deputado_estadual'];
-const CARGOS_MUNICIPAL = ['prefeito','vereador'];
-const ANOS_GERAL       = [2006,2010,2014,2018,2022];
-const ANOS_MUNICIPAL   = [2008,2012,2016,2020,2024];
-const IS_PROPORCIONAL  = c => ['deputado_federal','deputado_estadual','vereador'].includes(c);
+const ST={tab:'candidatos',tipo:'geral',cargo:'presidente',ano:2022,turno:2,mun:null,meta:null,geo:null,mapaData:null,munIndice:null,pacoteCache:{},munData:null,serieCache:{},filter:null};
+let MAP,GLAYER,CHART_INST=null;
 
-const PC = {
-  'PT':'#CC0000','PL':'#1E3A7B','PSL':'#1E3A7B','PSDB':'#0095DA',
-  'MDB':'#D4920A','PMDB':'#D4920A','PP':'#2B5BA8','PDT':'#B22222',
-  'PSOL':'#6B0DAD','REDE':'#2E8B57','NOVO':'#E8600A','UNIÃO':'#15803D',
-  'DEM':'#15803D','PRD':'#0D9488','PSD':'#3B82F6','REPUBLICANOS':'#EA580C',
-  'PRB':'#EA580C','PCdoB':'#9B1C1C','SOLIDARIEDADE':'#C47E00',
-  'AVANTE':'#7C3AED','PODE':'#06B6D4','PTB':'#92400E','PV':'#16A34A',
-  'AGIR':'#65A30D','UP':'#DB2777','PSTU':'#BE123C','PCO':'#7F1D1D',
-  'default':'#6B7280'
-};
-const cor  = p => PC[p] || PC.default;
-const fv   = n => n>=1e6?(n/1e6).toFixed(1).replace('.',',')+' M':n>=1e3?(n/1e3).toFixed(0)+' K':(n||0).toLocaleString('pt-BR');
-const fn   = n => (n||0).toLocaleString('pt-BR');
-const fp   = n => n!=null?n.toFixed(2).replace('.',',')+'%':'—';
-const frc  = n => n!=null?'R$ '+n.toLocaleString('pt-BR',{maximumFractionDigits:0}):'—';
-const hex2rgba = (h,a) => { const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16); return `rgba(${r},${g},${b},${a})`; };
-
-function sClass(s){
-  if(!s)return'';const u=s.toUpperCase();
-  if(u.includes('ELEITO')&&!u.includes('NÃO')&&!u.includes('NAO'))return'eleito';
-  if(u.includes('2º')||u.includes('TURNO'))return'seg';
-  return'';
-}
-function sLabel(s){const c=sClass(s);return c==='eleito'?'Eleito ✓':c==='seg'?'2º Turno':'';}
-
-// ── State ────────────────────────────────────
-const ST = {
-  tab:'candidatos',tipo:'geral',cargo:'presidente',ano:2022,turno:2,
-  mun:null,meta:null,geo:null,mapaData:null,
-  munIndice:null,pacoteCache:{},munData:null,
-  serieCache:{},filter:null
-};
-let MAP, GLAYER, CHART_INST = null;
-
-// ── Map ──────────────────────────────────────
 function initMap(){
   MAP=L.map('map',{center:[-29.5,-53.0],zoom:7,zoomControl:true,attributionControl:false});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',{maxZoom:13,minZoom:5}).addTo(MAP);
@@ -289,19 +213,16 @@ function initMap(){
 
 function featureStyle(f){
   const d=ST.mapaData?.[f.properties.CD_MUN];
-  if(!d) return {fillColor:'#CCC',color:'#FFF',weight:0.6,fillOpacity:0.3};
-  // Filter active?
+  if(!d)return{fillColor:'#CCC',color:'#FFF',weight:.6,fillOpacity:.3};
   if(ST.filter){
-    const match = ST.filter.type==='partido'
-      ? d.partido_venc===ST.filter.value
-      : (d.vencedor===ST.filter.nome && d.partido_venc===ST.filter.partido);
-    if(match) return {fillColor:cor(d.partido_venc),fillOpacity:.9,color:ST.filter.cor,weight:1.5};
-    return {fillColor:'#D0D0D0',fillOpacity:.25,color:'#FFF',weight:.4};
+    const vp=d.partido_venc,vc=d.vencedor;
+    const match=ST.filter.type==='partido'?vp===ST.filter.value:(vc===ST.filter.nome&&vp===ST.filter.partido);
+    if(match)return{fillColor:cor(vp),fillOpacity:.92,color:ST.filter.cor,weight:1.8};
+    return{fillColor:'#CCC',fillOpacity:.2,color:'#FFF',weight:.3};
   }
   const c=cor(d.partido_venc),p=d.pct_venc||50;
-  return {fillColor:c,fillOpacity:p<55?.52:p<63?.67:p<73?.80:.90,color:'#FFF',weight:.7};
+  return{fillColor:c,fillOpacity:p<55?.5:p<63?.65:p<73?.78:.90,color:'#FFF',weight:.7};
 }
-
 function renderChoropleth(){
   if(GLAYER){MAP.removeLayer(GLAYER);GLAYER=null;}
   if(!ST.geo||!ST.mapaData)return;
@@ -311,17 +232,16 @@ function renderChoropleth(){
       const cd=f.properties.CD_MUN,d=ST.mapaData[cd],nom=f.properties.NM_MUN||'—',cod=f.properties.cod_tse;
       layer.bindTooltip(()=>{
         if(!d)return`<strong>${nom}</strong><br><em>Sem dados</em>`;
-        const venc=IS_PROPORCIONAL(ST.cargo)?`Partido: <strong>${d.partido_venc}</strong>`:`<strong>${d.vencedor}</strong> · ${d.partido_venc}`;
-        return`<strong>${nom}</strong><br>${venc}<br>${fp(d.pct_venc)} dos votos válidos`;
+        const prop=IS_PROP(ST.cargo);
+        return`<strong>${nom}</strong><br>${prop?`Partido líder: <strong>${d.partido_venc}</strong>`:`<strong>${d.vencedor}</strong> · ${d.partido_venc}`}<br>${fp(d.pct_venc)} dos votos válidos`;
       },{sticky:true,direction:'top'});
       layer.on('mouseover',e=>{if(ST.mun?.cdMun!==cd)e.target.setStyle({weight:2,color:'#333'});});
-      layer.on('mouseout', e=>{if(ST.mun?.cdMun!==cd)GLAYER.resetStyle(e.target);});
+      layer.on('mouseout',e=>{if(ST.mun?.cdMun!==cd)GLAYER.resetStyle(e.target);});
       layer.on('click',()=>loadMunicipio(cd,cod,nom));
     }
   }).addTo(MAP);
 }
-
-function refreshStyles(){if(GLAYER)GLAYER.eachLayer(l=>l.setStyle(featureStyle(l.feature)));}
+const refreshStyles=()=>{if(GLAYER)GLAYER.eachLayer(l=>l.setStyle(featureStyle(l.feature)));};
 function highlightMun(cd){
   if(!GLAYER)return;
   GLAYER.eachLayer(l=>{
@@ -329,96 +249,82 @@ function highlightMun(cd){
     else if(!ST.filter)GLAYER.resetStyle(l);
   });
 }
-
-// ── Filter ───────────────────────────────────
-function setMapFilter(type,value,nome,partido,c){
+function setFilter(type,value,nome,partido,c){
   ST.filter={type,value,nome,partido,cor:c};
   refreshStyles();
-  const chip=document.getElementById('filter-chip');
-  const lbl =document.getElementById('filter-label');
-  chip.classList.add('on');
-  lbl.textContent = type==='partido' ? `Partido: ${value}` : `${nome} (${partido})`;
-  // Update legend active state
-  document.querySelectorAll('.li').forEach(el=>el.classList.toggle('active',el.dataset.key===value||(el.dataset.nome===nome&&el.dataset.partido===partido)));
+  document.getElementById('filter-dot').style.background=c;
+  document.getElementById('filter-label').textContent=type==='partido'?`Partido: ${value}`:`${nome} (${partido})`;
+  document.getElementById('filter-pill').classList.add('on');
+  document.querySelectorAll('.li').forEach(el=>{
+    const m=type==='partido'?el.dataset.key===value:(el.dataset.nome===nome&&el.dataset.part===partido);
+    el.classList.toggle('active',m);
+  });
 }
 function clearFilter(){
-  ST.filter=null;
-  refreshStyles();
-  document.getElementById('filter-chip').classList.remove('on');
+  ST.filter=null;refreshStyles();
+  document.getElementById('filter-pill').classList.remove('on');
   document.querySelectorAll('.li').forEach(el=>el.classList.remove('active'));
   render();
 }
-
-// ── Data loading ─────────────────────────────
+function toggleFilterCand(nome,partido){
+  const c=cor(partido);
+  if(ST.filter&&ST.filter.nome===nome&&ST.filter.partido===partido){clearFilter();return;}
+  setFilter('candidato',`${nome}||${partido}`,nome,partido,c);
+}
+function toggleFilterPart(partido){
+  const c=cor(partido);
+  if(ST.filter&&ST.filter.type==='partido'&&ST.filter.value===partido){clearFilter();return;}
+  setFilter('partido',partido,partido,partido,c);
+}
 async function get(url){const r=await fetch(url);if(!r.ok)throw new Error(`${r.status} ${url}`);return r.json();}
 const load=v=>document.getElementById('loading').classList.toggle('on',v);
-
 async function loadMapa(){
   load(true);
   try{
     ST.mapaData=await get(`${BASE}/mapa/${ST.cargo}_${ST.ano}_t${ST.turno}.json`);
     renderChoropleth();buildLegenda();updateMapLabel();render();
-  }catch(e){console.error('loadMapa:',e);ST.mapaData=null;render();}
-  finally{load(false);}
+  }catch(e){
+    console.warn('loadMapa:',e.message);ST.mapaData=null;render();
+  }finally{load(false);}
 }
-
 async function loadMunicipio(cdMun,codTse,nome){
-  if(!codTse)return;
-  load(true);
+  if(!codTse)return;load(true);
   try{
     const cod=String(codTse);
-    let munData=null;
-    for(const pac of Object.values(ST.pacoteCache)){if(pac[cod]){munData=pac[cod];break;}}
-    if(!munData){
+    let md=null;
+    for(const p of Object.values(ST.pacoteCache)){if(p[cod]){md=p[cod];break;}}
+    if(!md){
       if(!ST.munIndice)ST.munIndice=await get(`${BASE}/municipio_indice.json`);
       const pn=ST.munIndice[cod];
       if(pn==null)throw new Error(`Índice: ${cod}`);
       const pk=`pac_${String(pn).padStart(2,'0')}`;
       if(!ST.pacoteCache[pk])ST.pacoteCache[pk]=await get(`${BASE}/pacotes/${pk}.json`);
-      munData=ST.pacoteCache[pk][cod];
+      md=ST.pacoteCache[pk][cod];
     }
-    if(!munData)throw new Error(`Dados ${cod} não encontrados`);
-    ST.munData=munData;ST.mun={cdMun,codTse:cod,nome};
+    if(!md)throw new Error(`Dados ${cod} não encontrados`);
+    ST.munData=md;ST.mun={cdMun,codTse:cod,nome};
     highlightMun(cdMun);updateScope();render();
   }catch(e){console.error('loadMunicipio:',e);}
   finally{load(false);}
 }
-
-async function loadSerieFile(fname){
-  if(ST.serieCache[fname])return ST.serieCache[fname];
-  const d=await get(`${BASE}/serie/${fname}`);
-  ST.serieCache[fname]=d;return d;
-}
-
-function getSerieFiles(){
-  const c=ST.cargo;
-  const candFiles={presidente:'candidatos_majorit.json',governador:'candidatos_majorit.json',senador:'candidatos_majorit.json',prefeito:'totais_prefeito.json'};
-  const partFiles={presidente:'partidos_majorit.json',governador:'partidos_majorit.json',senador:'partidos_majorit.json',deputado_federal:'partidos_dep_federal.json',deputado_estadual:'partidos_dep_estadual.json',prefeito:'partidos_prefeito.json',vereador:'totais_vereadores_partido.json'};
-  return{cand:candFiles[c]||null,part:partFiles[c]||null};
-}
-
+const scache={};
+async function getSerie(f){if(scache[f])return scache[f];const d=await get(`${BASE}/serie/${f}`);scache[f]=d;return d;}
 function clearMun(){
   ST.mun=null;ST.munData=null;
   if(GLAYER)GLAYER.eachLayer(l=>GLAYER.resetStyle(l));
   updateScope();render();
 }
-
-// ── Controls ──────────────────────────────────
-function switchTab(t){
-  ST.tab=t;
-  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));
-  render();
-}
+function switchTab(t){ST.tab=t;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));render();}
 function setTipo(tipo){
   ST.tipo=tipo;ST.cargo=tipo==='geral'?'presidente':'prefeito';
   ST.ano=tipo==='geral'?2022:2024;ST.turno=tipo==='geral'?2:1;
-  ST.filter=null;document.getElementById('filter-chip').classList.remove('on');
+  ST.filter=null;document.getElementById('filter-pill').classList.remove('on');
   clearMun();
   document.querySelectorAll('[data-tipo]').forEach(b=>b.classList.toggle('on',b.dataset.tipo===tipo));
   buildCargoChips();buildAnoChips();buildTurnoChips();loadMapa();
 }
 function setCargo(c){
-  ST.cargo=c;ST.turno=1;ST.filter=null;document.getElementById('filter-chip').classList.remove('on');
+  ST.cargo=c;ST.filter=null;document.getElementById('filter-pill').classList.remove('on');
   document.querySelectorAll('[data-cargo]').forEach(b=>b.classList.toggle('on',b.dataset.cargo===c));
   buildTurnoChips();loadMapa();
 }
@@ -432,23 +338,24 @@ function setTurno(t){
   document.querySelectorAll('[data-turno]').forEach(b=>b.classList.toggle('on',+b.dataset.turno===+t));
   loadMapa();
 }
-
 function buildCargoChips(){
-  const list=ST.tipo==='geral'?CARGOS_GERAL:CARGOS_MUNICIPAL;
-  document.getElementById('cargo-chips').innerHTML=list.map(c=>
+  document.getElementById('cargo-chips').innerHTML=(ST.tipo==='geral'?CARGOS_GERAL:CARGOS_MUNICIPAL).map(c=>
     `<button class="chip ${c===ST.cargo?'on':''}" data-cargo="${c}" onclick="setCargo('${c}')">${CARGO_LABEL[c]}</button>`
   ).join('');
 }
 function buildAnoChips(){
-  const list=ST.tipo==='geral'?ANOS_GERAL:ANOS_MUNICIPAL;
-  document.getElementById('ano-chips').innerHTML=list.map(a=>
+  document.getElementById('ano-chips').innerHTML=(ST.tipo==='geral'?ANOS_GERAL:ANOS_MUNICIPAL).map(a=>
     `<button class="chip ${a===ST.ano?'on':''}" data-ano="${a}" onclick="setAno(${a})">${a}</button>`
   ).join('');
 }
 function buildTurnoChips(){
-  const avail=ST.meta?ST.meta.mapa_disponivel.filter(m=>m.cargo===ST.cargo&&m.ano===ST.ano).map(m=>m.turno).sort():[ST.turno];
+  let avail=[1];
+  if(ST.meta){
+    const found=ST.meta.mapa_disponivel.filter(m=>m.cargo===ST.cargo&&m.ano===ST.ano).map(m=>m.turno).sort();
+    if(found.length)avail=found;
+  }
   const ps=document.getElementById('turno-ps');
-  if(avail.length<=1){ps.classList.add('hidden');ST.turno=avail[0]||1;return;}
+  if(avail.length<=1){ps.classList.add('hidden');ST.turno=avail[0];return;}
   ps.classList.remove('hidden');
   if(!avail.includes(ST.turno))ST.turno=avail[0];
   document.getElementById('turno-chips').innerHTML=avail.map(t=>
@@ -457,184 +364,137 @@ function buildTurnoChips(){
 }
 function updateMapLabel(){
   document.getElementById('ml-cargo').textContent=CARGO_LABEL[ST.cargo]||ST.cargo;
-  document.getElementById('ml-titulo').textContent=`${ST.turno}º Turno · ${ST.ano}`;
+  document.getElementById('ml-titulo').textContent=IS_PROP(ST.cargo)?`Partido líder · ${ST.ano}`:`${ST.turno}º Turno · ${ST.ano}`;
 }
 function updateScope(){
   const b=document.getElementById('scope-badge'),i=document.getElementById('scope-icon');
   if(ST.mun){b.textContent=ST.mun.nome.toUpperCase();b.className='on';i.textContent='📍';}
   else{b.textContent='RIO GRANDE DO SUL';b.className='';i.textContent='🗺';}
 }
-
 function buildLegenda(){
   if(!ST.mapaData){document.getElementById('legend-items').innerHTML='';return;}
-  const wins={};
+  const isProp=IS_PROP(ST.cargo);
+  const totV={},totM={};let gV=0;
   Object.values(ST.mapaData).forEach(m=>{
-    const k=IS_PROPORCIONAL(ST.cargo)?m.partido_venc:`${m.vencedor}||${m.partido_venc}`;
-    wins[k]=(wins[k]||0)+1;
+    gV+=m.validos||0;
+    const k=isProp?m.partido_venc:`${m.vencedor}||${m.partido_venc}`;
+    totM[k]=(totM[k]||0)+1;
+    totV[k]=(totV[k]||0)+(m.pct_venc/100*(m.validos||0));
   });
-  document.getElementById('legend-items').innerHTML=Object.entries(wins)
-    .sort((a,b)=>b[1]-a[1]).slice(0,8).map(([k,n])=>{
-      if(IS_PROPORCIONAL(ST.cargo)){
-        return`<div class="li" data-key="${k}" onclick="togglePartyFilter('${k}')">
-          <div class="li-dot" style="background:${cor(k)}"></div>
-          <div class="li-info"><div class="li-nome">${k}</div><div class="li-partido">Partido</div></div>
-          <div class="li-count">${n}</div></div>`;
-      }
-      const [nome,part]=k.split('||');
-      return`<div class="li" data-nome="${nome}" data-partido="${part}" onclick="toggleCandFilter('${k}')">
-        <div class="li-dot" style="background:${cor(part)}"></div>
-        <div class="li-info"><div class="li-nome">${nome}</div><div class="li-partido">${part}</div></div>
-        <div class="li-count">${n}</div></div>`;
+  document.getElementById('legend-items').innerHTML=Object.entries(totM)
+    .sort((a,b)=>b[1]-a[1]).slice(0,9).map(([k,n])=>{
+      let nome,partido,c2;
+      if(isProp){nome=k;partido='Partido';c2=cor(k);}
+      else{const[nm,pt]=k.split('||');nome=nm;partido=pt;c2=cor(pt);}
+      const pct=gV>0?(totV[k]||0)/gV*100:0;
+      const isAct=ST.filter?(ST.filter.type==='partido'?ST.filter.value===k:(ST.filter.nome===nome&&ST.filter.partido===partido)):false;
+      const oc=isProp?`toggleFilterPart('${k.replace(/'/g,"\\'")}')`:
+        `toggleFilterCand('${nome.replace(/'/g,"\\'")}','${partido.replace(/'/g,"\\'")}')`;
+      return`<div class="li ${isAct?'active':''}" data-key="${k}" data-nome="${nome}" data-part="${partido}" onclick="${oc}">
+        <div class="li-sw" style="background:${c2}"></div>
+        <div style="flex:1;min-width:0"><div class="li-nome">${nome}</div><div class="li-part">${partido}</div></div>
+        <div class="li-r"><div class="li-pct" style="color:${c2}">${pct.toFixed(1)}%</div><div class="li-mun">${n} mun.</div></div>
+      </div>`;
     }).join('');
 }
 
-function toggleCandFilter(k){
-  const [nome,part]=k.split('||'),c=cor(part);
-  if(ST.filter&&ST.filter.nome===nome&&ST.filter.partido===part){clearFilter();return;}
-  setMapFilter('candidato',k,nome,part,c);
-}
-function togglePartyFilter(partido){
-  const c=cor(partido);
-  if(ST.filter&&ST.filter.value===partido&&ST.filter.type==='partido'){clearFilter();return;}
-  setMapFilter('partido',partido,partido,partido,c);
-}
-
-// ── Chart ─────────────────────────────────────
-function destroyChart(){if(CHART_INST){CHART_INST.destroy();CHART_INST=null;}}
-
-async function renderHistoryChart(containerId, munData){
-  const el=document.getElementById(containerId);
-  if(!el)return;
+// Chart
+const destroyChart=()=>{if(CHART_INST){CHART_INST.destroy();CHART_INST=null;}};
+async function buildChart(canvasId,munData){
+  destroyChart();
+  const el=document.getElementById(canvasId);if(!el)return;
   const anos=ST.tipo==='geral'?ANOS_GERAL:ANOS_MUNICIPAL;
-  const files=getSerieFiles();
-  const fname=ST.tab==='candidatos'?files.cand:files.part;
-  if(!fname){el.innerHTML='<div class="chart-empty">Dados históricos não disponíveis para este cargo</div>';return;}
-
-  let serie;
-  try{serie=await loadSerieFile(fname);}
-  catch(e){el.innerHTML='<div class="chart-empty">Erro ao carregar série histórica</div>';return;}
-
-  const cargo=ST.cargo;
+  const cargo=ST.cargo,isProp=IS_PROP(cargo),tab=ST.tab;
+  const FM={
+    candidatos:{presidente:'candidatos_majorit.json',governador:'candidatos_majorit.json',senador:'candidatos_majorit.json',prefeito:'totais_prefeito.json'},
+    partidos:{presidente:'partidos_majorit.json',governador:'partidos_majorit.json',senador:'partidos_majorit.json',deputado_federal:'partidos_dep_federal.json',deputado_estadual:'partidos_dep_estadual.json',prefeito:'partidos_prefeito.json',vereador:'totais_vereadores_partido.json'}
+  };
+  const fname=(tab==='candidatos'?FM.candidatos:FM.partidos)[cargo];
+  if(!fname){el.innerHTML='<div class="chart-empty">Série não disponível para este cargo</div>';return;}
+  let serie;try{serie=await getSerie(fname);}catch(e){el.innerHTML='<div class="chart-empty">Erro ao carregar série</div>';return;}
   let rows=serie.filter(r=>r.cargo===cargo);
-  if(!rows.length){el.innerHTML='<div class="chart-empty">Sem série histórica para este cargo</div>';return;}
-
-  // For gerais candidatos, prefer turno 2
-  if(ST.tab==='candidatos'&&['presidente','governador'].includes(cargo)){
-    const t2=rows.filter(r=>r.turno===2);
-    if(t2.length)rows=t2;else rows=rows.filter(r=>r.turno===1);
-  } else {
-    rows=rows.filter(r=>r.turno===1||!r.turno);
-  }
-
-  const nameKey=ST.tab==='candidatos'?'candidato':'partido_unif';
+  if(!rows.length){el.innerHTML='<div class="chart-empty">Sem dados históricos</div>';return;}
+  if(!isProp&&['presidente','governador'].includes(cargo)){
+    const t2=rows.filter(r=>r.turno===2);rows=t2.length?t2:rows.filter(r=>r.turno===1);
+  }else{rows=rows.filter(r=>!r.turno||r.turno===1);}
+  const nk=tab==='candidatos'?'candidato':'partido_unif';
   const grouped={};
   rows.forEach(r=>{
-    const k=r[nameKey]||r.partido||r.partido_unif;
-    if(!k||k==='VOTO BRANCO'||k==='VOTO NULO')return;
-    const part=r.partido_unif||r.partido||k;
-    if(!grouped[k])grouped[k]={label:k,partido:part,data:{}};
-    grouped[k].data[r.ano]=+(r.pct_validos||0);
+    const k=r[nk]||r.partido;
+    if(!k||k==='VOTO BRANCO'||k==='VOTO NULO'||k==='BRANCO'||k==='NULO')return;
+    const pt=r.partido_unif||r.partido||k;
+    if(!grouped[k])grouped[k]={label:k,partido:pt,data:{}};
+    if(!grouped[k].data[r.ano]||r.pct_validos>grouped[k].data[r.ano])grouped[k].data[r.ano]=+(r.pct_validos||0);
   });
-
-  const top=Object.values(grouped)
-    .sort((a,b)=>Math.max(...Object.values(b.data))-Math.max(...Object.values(a.data)))
-    .slice(0,ST.tab==='candidatos'?6:8);
-
-  if(!top.length){el.innerHTML='<div class="chart-empty">Sem dados suficientes</div>';return;}
-
-  // If municipality selected, also add municipality data
-  let munSerie=null;
+  const top=Object.values(grouped).sort((a,b)=>Math.max(...Object.values(b.data))-Math.max(...Object.values(a.data))).slice(0,tab==='candidatos'?6:8);
+  if(!top.length){el.innerHTML='<div class="chart-empty">Dados insuficientes</div>';return;}
+  const datasets=[];
+  top.forEach(g=>{
+    const c2=cor(g.partido);
+    datasets.push({label:g.label,data:anos.map(a=>g.data[a]??null),borderColor:c2,backgroundColor:h2r(c2,.12),borderWidth:2,pointRadius:3.5,pointHoverRadius:6,tension:.3,spanGaps:false,fill:false});
+  });
   if(munData){
-    const regs=cargo==='prefeito'?munData.prefeito:['presidente','governador','senador'].includes(cargo)?munData.majoritarias:munData.legislativas;
+    const regs=['presidente','governador','senador'].includes(cargo)?munData.majoritarias:cargo==='prefeito'?munData.prefeito:munData.legislativas;
     if(regs&&regs.length){
-      const munByAno={};
-      regs.filter(r=>r.cargo===cargo&&(r.turno===2||r.turno===1)).forEach(r=>{
-        const k=ST.tab==='candidatos'?(r.candidato):(r.partido);
-        if(k==='VOTO BRANCO'||k==='VOTO NULO'||r.numero==='95'||r.numero==='96')return;
-        if(!munByAno[k])munByAno[k]={};
-        // Prefer turno 2 over turno 1
-        if(!munByAno[k][r.ano]||r.turno>munByAno[k][r.ano].turno)
-          munByAno[k][r.ano]={v:r.pct_validos,turno:r.turno};
+      const mbk={};
+      regs.filter(r=>r.cargo===cargo&&r.numero!=='95'&&r.numero!=='96').forEach(r=>{
+        const k=tab==='candidatos'?r.candidato:r.partido;
+        if(!mbk[k])mbk[k]={};
+        const cur=mbk[k][r.ano];
+        if(!cur||r.turno>cur.t)mbk[k][r.ano]={v:r.pct_validos,t:r.turno};
       });
-      munSerie=munByAno;
+      top.forEach(g=>{
+        const md2=mbk[g.label];if(!md2)return;
+        const c2=cor(g.partido);
+        datasets.push({label:`${g.label} (mun.)`,data:anos.map(a=>md2[a]?.v??null),borderColor:c2,backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:false,fill:false,pointStyle:'rectRot'});
+      });
     }
   }
-
-  el.innerHTML='<canvas id="hist-cvs"></canvas>';
-  const ctx=document.getElementById('hist-cvs').getContext('2d');
-  destroyChart();
-
-  const datasets=top.map(g=>{
-    const c=cor(g.partido);
-    const ds={label:g.label,data:anos.map(a=>g.data[a]??null),borderColor:c,backgroundColor:hex2rgba(c,.15),borderWidth:2,pointRadius:3.5,pointHoverRadius:5,tension:.3,spanGaps:false};
-    // Municipality overlay as dashed
-    if(munSerie&&munSerie[g.label]){
-      // handled as separate dataset below
+  el.innerHTML='<canvas id="_hcvs"></canvas>';
+  const ctx=document.getElementById('_hcvs').getContext('2d');
+  CHART_INST=new Chart(ctx,{type:'line',data:{labels:anos,datasets},options:{
+    responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{
+      legend:{position:'bottom',labels:{font:{size:9,family:"'IBM Plex Sans',sans-serif"},padding:8,usePointStyle:true,boxWidth:8,boxHeight:8}},
+      tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fp(c.raw)}`}}
+    },
+    scales:{
+      y:{beginAtZero:false,ticks:{callback:v=>v.toFixed(0)+'%',font:{size:9},maxTicksLimit:6},grid:{color:'#EBEBEA'}},
+      x:{ticks:{font:{size:9}},grid:{display:false}}
     }
-    return ds;
-  });
-
-  // Add municipality dashed lines if available
-  if(munSerie){
-    top.forEach(g=>{
-      const mData=munSerie[g.label];
-      if(!mData)return;
-      const c=cor(g.partido);
-      datasets.push({label:`${g.label} (mun.)`,data:anos.map(a=>mData[a]?.v??null),borderColor:c,backgroundColor:'transparent',borderWidth:1.5,borderDash:[4,3],pointRadius:3,pointHoverRadius:5,tension:.3,spanGaps:false,pointStyle:'rectRot'});
-    });
-  }
-
-  CHART_INST=new Chart(ctx,{
-    type:'line',
-    data:{labels:anos,datasets},
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{position:'bottom',labels:{font:{size:9,family:"'IBM Plex Sans',sans-serif"},padding:6,usePointStyle:true,boxWidth:8}},
-        tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${fp(c.raw)}`}}
-      },
-      scales:{
-        y:{beginAtZero:false,ticks:{callback:v=>v.toFixed(1)+'%',font:{size:9}},grid:{color:'#EBEBEA'}},
-        x:{ticks:{font:{size:9}},grid:{display:false}}
-      }
-    }
-  });
+  }});
 }
 
-// ── Render ────────────────────────────────────
-function render(){
-  if(ST.tab==='candidatos'){ST.mun&&ST.munData?renderMun():renderEstado();}
-  else renderPartidos();
-}
-
-// ─ Estado ─────────────────────────────────────
+// renderEstado
 function renderEstado(){
   const md=ST.mapaData,el=document.getElementById('rp-content');
-  if(!md){el.innerHTML='<div class="empty">Sem dados para esta seleção.</div>';return;}
-
+  if(!md){
+    el.innerHTML=`<div class="empty">Sem dados para esta seleção.<br><br>
+      <span style="font-size:10px;color:var(--g400)">Verifique se <code>${ST.cargo}_${ST.ano}_t${ST.turno}.json</code> está em <code>dados/mapa/</code><br>e se o <code>meta.json</code> foi atualizado.</span></div>`;
+    return;
+  }
+  const isProp=IS_PROP(ST.cargo);
   const tot={};let gT=0,gV=0,gB=0,gN=0;
   Object.values(md).forEach(m=>{
     gT+=m.total||0;gV+=m.validos||0;gB+=m.brancos||0;gN+=m.nulos||0;
-    Object.entries(m.candidatos||{}).forEach(([num,c])=>{
-      if(!tot[num])tot[num]={...c,votos:0};tot[num].votos+=c.votos;
+    Object.entries(m.candidatos||{}).forEach(([key,c])=>{
+      const nome=isProp?key:(c.nome||key);
+      const partido=isProp?key:(c.partido||'—');
+      const uid=isProp?key:`${nome}||${partido}`;
+      if(!tot[uid])tot[uid]={nome,partido,votos:0,status:c.status||'',eleitos:0};
+      tot[uid].votos+=c.votos||0;
+      if(c.eleitos)tot[uid].eleitos=(tot[uid].eleitos||0)+c.eleitos;
     });
   });
   Object.values(tot).forEach(c=>{c.pct=gV>0?+(c.votos/gV*100).toFixed(2):0;});
   const cands=Object.values(tot).sort((a,b)=>b.votos-a.votos);
   const maxV=cands[0]?.votos||1;
-  const isProp=IS_PROPORCIONAL(ST.cargo);
   const rank=Object.entries(md).map(([cd,m])=>({...m,cd})).sort((a,b)=>b.pct_venc-a.pct_venc).slice(0,10);
-
-  // Build click handlers for cards
-  const cardClick=isProp
-    ? (c)=>`onclick="togglePartyFilter('${c.nome.replace(/'/g,"\\'")}')"`
-    : (c)=>`onclick="toggleCandFilter('${(c.nome+'||'+c.partido).replace(/'/g,"\\'")}')"`
-
   el.innerHTML=`
     <div class="rp-hdr">
       <div><div class="rp-title">Rio Grande do Sul</div>
-      <div class="rp-sub">${CARGO_LABEL[ST.cargo]} · ${ST.turno}º Turno · ${ST.ano}</div></div>
+      <div class="rp-sub">${CARGO_LABEL[ST.cargo]} · ${isProp?ST.ano:`${ST.turno}º Turno · ${ST.ano}`}</div></div>
     </div>
     <div class="rs">
       <div class="rs-title">Totais do Estado</div>
@@ -648,69 +508,74 @@ function renderEstado(){
       </div>
     </div>
     <div class="rs">
-      <div class="rs-title">Resultados <span style="font-size:8px;font-weight:400;color:var(--g400)">(clique para filtrar mapa)</span></div>
+      <div class="rs-title">Resultados <span class="rs-hint">(clique para filtrar mapa)</span></div>
+      ${isProp?`<div class="note">% calculado sobre total de votos válidos no estado. Em eleições proporcionais cada município tem seus próprios candidatos.</div>`:''}
       ${cands.map(c=>{
         const c2=cor(c.partido),sc=sClass(c.status),sl=sLabel(c.status);
-        const isF=ST.filter&&(ST.filter.nome===c.nome||ST.filter.value===c.nome);
-        return`<div class="ccard ${sc?'hl':''} ${isF?'filtered':''}" style="--pc:${c2}" ${cardClick(c)}>
+        const filt=ST.filter&&(ST.filter.type==='partido'?ST.filter.value===c.nome:(ST.filter.nome===c.nome&&ST.filter.partido===c.partido));
+        const oc=isProp?`toggleFilterPart('${c.nome.replace(/'/g,"\\'")}')`:
+          `toggleFilterCand('${c.nome.replace(/'/g,"\\'")}','${c.partido.replace(/'/g,"\\'")}')`;
+        return`<div class="ccard ${sc?'hl':''} ${filt?'filtered':''}" style="--pc:${c2}" onclick="${oc}">
           <div class="cdot"></div>
-          <div class="cinfo"><div class="cnome">${c.nome}</div><div class="cpart">${c.partido}</div></div>
+          <div class="cinfo"><div class="cnome">${c.nome}</div><div class="cpart">${isProp&&c.eleitos?`${c.eleitos} eleitos`:c.partido}</div></div>
           <div class="cvotos"><div class="cpct">${fp(c.pct)}</div><div class="cabs">${fv(c.votos)}</div></div>
           ${sl?`<div class="cstat ${sc}">${sl}</div>`:''}
           <div class="cbar-wrap"><div class="cbar" style="width:${(c.votos/maxV*100).toFixed(1)}%"></div></div>
         </div>`;}).join('')}
     </div>
-    <div class="rs">
-      <div class="rs-title">Evolução Histórica</div>
-      <div class="chart-wrap" id="chart-estado" style="height:200px"></div>
+    <div class="chart-sec">
+      <div class="chart-title">Evolução Histórica · % votos válidos</div>
+      <div class="chart-wrap" id="chart-est"></div>
     </div>
     <div class="rs">
       <div class="rs-title">Ranking · maior % do vencedor</div>
       <div class="rank-list">
         ${rank.map((m,i)=>{const c2=cor(m.partido_venc);
-          return`<div class="ri" onclick="loadMunicipio('${m.cd}','${m.cod_tse}','${m.municipio}')">
-            <div class="rnum">${i+1}</div>
-            <div class="rnome">${m.municipio}</div>
+          return`<div class="ri" onclick="loadMunicipio('${m.cd}','${m.cod_tse}','${m.municipio.replace(/'/g,"\\'")}')">
+            <div class="rnum">${i+1}</div><div class="rnome">${m.municipio}</div>
             <div class="rpct" style="color:${c2}">${fp(m.pct_venc)}</div>
             <div class="rbar-wrap"><div class="rbar" style="width:${m.pct_venc.toFixed(1)}%;background:${c2}"></div></div>
           </div>`;}).join('')}
       </div>
     </div>`;
-
-  renderHistoryChart('chart-estado', null);
+  buildChart('chart-est',null);
 }
 
-// ─ Município ──────────────────────────────────
+// renderMun
 function renderMun(){
   const dm=ST.munData,md=ST.mapaData,el=document.getElementById('rp-content');
   if(!dm){renderEstado();return;}
-
+  const isProp=IS_PROP(ST.cargo);
   let regs=[];
   if(['presidente','governador','senador'].includes(ST.cargo))regs=dm.majoritarias||[];
   else if(ST.cargo==='prefeito')regs=dm.prefeito||[];
   else regs=dm.legislativas||[];
-
-  const fil=regs.filter(r=>r.cargo===ST.cargo&&r.ano===ST.ano&&r.turno===ST.turno);
+  const fil=regs.filter(r=>r.cargo===ST.cargo&&r.ano===ST.ano&&(isProp?true:r.turno===ST.turno));
   const val=fil.filter(r=>r.numero!=='95'&&r.numero!=='96').sort((a,b)=>b.votos-a.votos);
   const bco=fil.find(r=>r.numero==='95'),nul=fil.find(r=>r.numero==='96');
-  const maxV=val[0]?.votos||1,gT=val[0]?.total||0,gV=val[0]?.validos||0;
+  let display=val;
+  if(isProp){
+    const byP={};
+    val.forEach(r=>{
+      if(!byP[r.partido])byP[r.partido]={candidato:r.partido,partido:r.partido,votos:0,total:r.total,validos:r.validos,eleitos:0};
+      byP[r.partido].votos+=r.votos;
+      if(sClass(r.status)==='eleito')byP[r.partido].eleitos++;
+    });
+    display=Object.values(byP).sort((a,b)=>b.votos-a.votos);
+  }
+  const maxV=display[0]?.votos||1,gT=display[0]?.total||0,gV=display[0]?.validos||0;
   const rsD=md?.[ST.mun.cdMun];
-
-  // Census — find closest year at or before selected year
-  const censoArr=Array.isArray(dm.censo)?dm.censo:[];
-  const cen=censoArr.filter(c=>c&&c.ano!=null&&c.ano<=ST.ano).sort((a,b)=>b.ano-a.ano)[0]||null;
-
-  const isProp=IS_PROPORCIONAL(ST.cargo);
-
+  const cenArr=Array.isArray(dm.censo)?dm.censo:[];
+  const cen=cenArr.filter(c=>c&&c.ano!=null&&+c.ano<=ST.ano).sort((a,b)=>b.ano-a.ano)[0]||null;
   el.innerHTML=`
     <div class="rp-hdr">
       <div><div class="rp-title">${ST.mun.nome}</div>
-      <div class="rp-sub">${CARGO_LABEL[ST.cargo]} · ${ST.turno}º Turno · ${ST.ano}</div></div>
+      <div class="rp-sub">${CARGO_LABEL[ST.cargo]} · ${isProp?ST.ano:`${ST.turno}º Turno · ${ST.ano}`}</div></div>
       <button class="back-btn" onclick="clearMun()">← RS</button>
     </div>
-    ${val.length===0?`<div class="empty">Sem dados para esta seleção no município.</div>`:`
+    ${display.length===0?`<div class="empty">Sem dados para esta seleção no município.</div>`:`
     <div class="rs">
-      <div class="rs-title">Totais do Município</div>
+      <div class="rs-title">Totais</div>
       <div class="tg">
         <div class="titem"><div class="ti-lbl">Total votos</div><div class="ti-val">${fv(gT)}</div><div class="ti-sub">${fn(gT)}</div></div>
         <div class="titem"><div class="ti-lbl">Válidos</div><div class="ti-val">${fv(gV)}</div><div class="ti-sub">${fp(gT>0?gV/gT*100:0)}</div></div>
@@ -722,11 +587,13 @@ function renderMun(){
     </div>
     <div class="rs">
       <div class="rs-title">Resultados</div>
-      ${val.map(c=>{const c2=cor(c.partido),sc=sClass(c.status),sl=sLabel(c.status);
+      ${display.map(c=>{
+        const c2=cor(c.partido),sc=sClass(c.status),sl=sLabel(c.status),pct=gV>0?c.votos/gV*100:0;
         return`<div class="ccard ${sc?'hl':''}" style="--pc:${c2}">
           <div class="cdot"></div>
-          <div class="cinfo"><div class="cnome">${c.candidato}</div><div class="cpart">${c.partido}</div></div>
-          <div class="cvotos"><div class="cpct">${fp(c.pct_validos)}</div><div class="cabs">${fv(c.votos)}</div></div>
+          <div class="cinfo"><div class="cnome">${isProp?c.partido:c.candidato}</div>
+          <div class="cpart">${isProp&&c.eleitos?`${c.eleitos} eleito${c.eleitos>1?'s':''}`:c.partido}</div></div>
+          <div class="cvotos"><div class="cpct">${fp(pct)}</div><div class="cabs">${fv(c.votos)}</div></div>
           ${sl?`<div class="cstat ${sc}">${sl}</div>`:''}
           <div class="cbar-wrap"><div class="cbar" style="width:${(c.votos/maxV*100).toFixed(1)}%"></div></div>
         </div>`;}).join('')}
@@ -735,8 +602,7 @@ function renderMun(){
       <div class="rs-title">Comparação com RS</div>
       ${Object.entries(rsD.candidatos||{}).sort((a,b)=>b[1].votos-a[1].votos).slice(0,4).map(([num,cRS])=>{
         const cMun=val.find(s=>String(s.numero)===String(num));
-        const pM=cMun?.pct_validos||0,pR=cRS.pct,df=+(pM-pR).toFixed(1);
-        const c2=cor(cRS.partido);
+        const pM=cMun?.pct_validos||0,pR=cRS.pct,df=+(pM-pR).toFixed(1),c2=cor(cRS.partido);
         return`<div class="cmp-item">
           <div class="cmp-head"><span><strong>${cRS.nome}</strong> · ${cRS.partido}</span>
             <span class="cmp-diff" style="color:${df>=0?'#2E7D32':'#B71C1C'}">${df>=0?'▲':'▼'} ${Math.abs(df)}pp</span></div>
@@ -744,45 +610,38 @@ function renderMun(){
           <div class="cmp-vals"><span>Município: <strong>${fp(pM)}</strong></span><span>RS: ${fp(pR)}</span></div>
         </div>`;}).join('')}
     </div>`:''}
-    <div class="rs">
-      <div class="rs-title">Evolução Histórica <span style="font-weight:400;color:var(--g400)">(município vs RS)</span></div>
-      <div class="chart-wrap" id="chart-mun" style="height:200px"></div>
+    <div class="chart-sec">
+      <div class="chart-title">Evolução Histórica · sólido = município · tracejado = RS</div>
+      <div class="chart-wrap" id="chart-mun"></div>
     </div>
     ${cen?`<div class="rs">
       <div class="rs-title">Perfil Eleitoral · Censo ${cen.ano}</div>
-      <div class="tg">
+      <div class="tg" style="margin-bottom:10px">
         ${cen['Renda Media']!=null?`<div class="titem"><div class="ti-lbl">Renda Média</div><div class="ti-val" style="font-size:13px">${frc(cen['Renda Media'])}</div></div>`:''}
         ${cen['TOTAL_ELEITORES_PERFIL']!=null?`<div class="titem"><div class="ti-lbl">Eleitores</div><div class="ti-val" style="font-size:13px">${fv(cen['TOTAL_ELEITORES_PERFIL'])}</div></div>`:''}
       </div>
-      <div style="margin-top:8px">
-        ${buildDemoBar('Pop. Branca',cen['Pct Branca'],'#374151')}
-        ${buildDemoBar('Pop. Preta',cen['Pct Preta'],'#1F2937')}
-        ${buildDemoBar('Pop. Parda',cen['Pct Parda'],'#4B5563')}
-        ${buildDemoBar('Sup. Completo',cen['SUPERIOR COMPLETO']!=null&&cen['TOTAL_ELEITORES_PERFIL']?cen['SUPERIOR COMPLETO']/cen['TOTAL_ELEITORES_PERFIL']*100:null,'#0095DA')}
-        ${buildDemoBar('Esgoto Inad.',cen['Pct Esgoto Inadequado'],'#C0001A')}
-        ${buildDemoBar('Analfabeto',cen['ANALFABETO']!=null&&cen['TOTAL_ELEITORES_PERFIL']?cen['ANALFABETO']/cen['TOTAL_ELEITORES_PERFIL']*100:null,'#6B7280')}
-      </div>
-    </div>`:`<div class="rs"><div class="empty" style="padding:12px 0">Dados demográficos não disponíveis para este período.</div></div>`}
+      ${[['Pop. Branca',cen['Pct Branca'],'#374151'],['Pop. Preta',cen['Pct Preta'],'#1F2937'],['Pop. Parda',cen['Pct Parda'],'#6B7280'],
+         ['Sup. Completo',cen['SUPERIOR COMPLETO']!=null&&cen['TOTAL_ELEITORES_PERFIL']?cen['SUPERIOR COMPLETO']/cen['TOTAL_ELEITORES_PERFIL']*100:null,'#0095DA'],
+         ['Ens. Médio',cen['ENSINO MÉDIO COMPLETO']!=null&&cen['TOTAL_ELEITORES_PERFIL']?cen['ENSINO MÉDIO COMPLETO']/cen['TOTAL_ELEITORES_PERFIL']*100:null,'#2B5BA8'],
+         ['Esgoto Inad.',cen['Pct Esgoto Inadequado'],'#C0001A'],
+         ['Analfabeto',cen['ANALFABETO']!=null&&cen['TOTAL_ELEITORES_PERFIL']?cen['ANALFABETO']/cen['TOTAL_ELEITORES_PERFIL']*100:null,'#9A9A98']
+      ].filter(([,v])=>v!=null).map(([l,v,c])=>`
+        <div class="demo-row">
+          <span class="demo-lbl">${l}</span>
+          <div class="demo-track"><div class="demo-fill" style="width:${Math.min(v,100).toFixed(1)}%;background:${c}"></div></div>
+          <span class="demo-val">${v.toFixed(1)}%</span>
+        </div>`).join('')}
+    </div>`:`<div class="rs"><div class="empty" style="padding:10px 0;font-size:11px">Dados demográficos não disponíveis.</div></div>`}
     `}`;
-
-  if(val.length>0) renderHistoryChart('chart-mun', dm);
+  if(display.length>0)buildChart('chart-mun',dm);
 }
 
-function buildDemoBar(lbl,val,color){
-  if(val==null||isNaN(val))return'';
-  return`<div class="demo-bar-row">
-    <span class="demo-bar-lbl">${lbl}</span>
-    <div class="demo-bar-track"><div class="demo-bar-fill" style="width:${Math.min(val,100).toFixed(1)}%;background:${color}"></div></div>
-    <span class="demo-bar-val">${val.toFixed(1)}%</span>
-  </div>`;
-}
-
-// ─ Partidos ───────────────────────────────────
+// renderPartidos
 function renderPartidos(){
-  const el=document.getElementById('rp-content'),pd_file=getSerieFiles().part;
-  const isMun=!!(ST.mun&&ST.munData);
-
-  // Build basic structure immediately, then load data async
+  const el=document.getElementById('rp-content');
+  const isMun=!!(ST.mun&&ST.munData),isProp=IS_PROP(ST.cargo);
+  const FM={presidente:'partidos_majorit.json',governador:'partidos_majorit.json',senador:'partidos_majorit.json',deputado_federal:'partidos_dep_federal.json',deputado_estadual:'partidos_dep_estadual.json',prefeito:'partidos_prefeito.json',vereador:'totais_vereadores_partido.json'};
+  const fname=FM[ST.cargo];
   el.innerHTML=`
     <div class="rp-hdr">
       <div><div class="rp-title">${isMun?ST.mun.nome:'Rio Grande do Sul'}</div>
@@ -790,64 +649,58 @@ function renderPartidos(){
       ${isMun?`<button class="back-btn" onclick="clearMun()">← RS</button>`:''}
     </div>
     <div class="rs">
-      <div class="slabel">Ano</div>
-      <div class="chips" style="margin-top:0">
+      <div class="slabel" style="margin-bottom:8px">Ano</div>
+      <div class="chips">
         ${(ST.tipo==='geral'?ANOS_GERAL:ANOS_MUNICIPAL).map(a=>
           `<button class="chip ${a===ST.ano?'on':''}" onclick="setAno(${a})">${a}</button>`
         ).join('')}
       </div>
     </div>
-    <div class="rs" id="part-results"><div class="empty">Carregando...</div></div>
-    <div class="rs">
-      <div class="rs-title">Evolução Histórica</div>
-      <div class="chart-wrap" id="chart-part" style="height:200px"></div>
+    <div id="part-body"><div class="empty">Carregando...</div></div>
+    <div class="chart-sec">
+      <div class="chart-title">Evolução Histórica de Partidos</div>
+      <div class="chart-wrap" id="chart-part"></div>
     </div>`;
-
-  if(!pd_file){
-    document.getElementById('part-results').innerHTML='<div class="empty">Sem dados de partidos para este cargo.</div>';
-    return;
-  }
-
-  loadSerieFile(pd_file).then(pd=>{
-    const cargo=ST.cargo;
-    const anoSel=ST.ano;
-    let rows=pd.filter(r=>r.cargo===cargo&&r.ano===anoSel&&(r.votos>0)).sort((a,b)=>b.votos-a.votos);
-    const maxV=rows[0]?.votos||1,gVbase=rows[0]?.votos_validos||1;
-
-    // Municipality filter
-    let use=rows,isMunData=false,gVuse=gVbase,maxVuse=maxV;
+  if(!fname){document.getElementById('part-body').innerHTML='<div class="empty">Sem dados para este cargo.</div>';return;}
+  getSerie(fname).then(pd=>{
+    const cargo=ST.cargo,anoSel=ST.ano;
+    let rows=pd.filter(r=>r.cargo===cargo&&r.ano===anoSel&&r.votos>0).sort((a,b)=>b.votos-a.votos);
+    let use=rows,isMunData=false;
     if(isMun&&ST.munData){
-      const regs=ST.cargo==='prefeito'?ST.munData.prefeito:['presidente','governador','senador'].includes(ST.cargo)?ST.munData.majoritarias:ST.munData.legislativas;
-      const fil=(regs||[]).filter(r=>r.cargo===cargo&&r.ano===anoSel&&r.numero!=='95'&&r.numero!=='96');
+      const regs=cargo==='prefeito'?ST.munData.prefeito:['presidente','governador','senador'].includes(cargo)?ST.munData.majoritarias:ST.munData.legislativas;
       const byP={};
-      fil.forEach(r=>{
-        if(!byP[r.partido])byP[r.partido]={partido:r.partido,votos:0,total:0,validos:0,eleitos:0};
+      (regs||[]).filter(r=>r.cargo===cargo&&r.ano===anoSel&&r.numero!=='95'&&r.numero!=='96').forEach(r=>{
+        if(!byP[r.partido])byP[r.partido]={partido:r.partido,partido_unif:r.partido,votos:0,total:0,validos:0,eleitos:0};
         byP[r.partido].votos+=r.votos;byP[r.partido].total=r.total;byP[r.partido].validos=r.validos;
         if(sClass(r.status)==='eleito')byP[r.partido].eleitos++;
       });
-      const munRows=Object.values(byP).sort((a,b)=>b.votos-a.votos);
-      if(munRows.length){use=munRows;isMunData=true;gVuse=use[0]?.validos||1;maxVuse=use[0]?.votos||1;}
+      const mr=Object.values(byP).sort((a,b)=>b.votos-a.votos);
+      if(mr.length){use=mr;isMunData=true;}
     }
-
-    const div=document.getElementById('part-results');
+    const maxVu=use[0]?.votos||1,gVuse=isMunData?(use[0]?.validos||1):(use[0]?.votos_validos||1);
+    const div=document.getElementById('part-body');
     if(!div)return;
-    div.innerHTML=`<div class="rs-title">Votos por Partido <span style="font-size:8px;font-weight:400;color:var(--g400)">(clique para filtrar mapa)</span></div>`+
-      use.slice(0,15).map(r=>{
+    div.innerHTML=`<div class="rs">
+      <div class="rs-title">% Votos por Partido <span class="rs-hint">(clique para filtrar)</span></div>
+      ${isProp&&!isMunData?`<div class="note">% sobre total de votos válidos no estado. Em eleições proporcionais cada município tem candidatos diferentes.</div>`:''}
+      ${use.slice(0,15).map(r=>{
         const pts=r.partido_unif||r.partido,c2=cor(pts),pct=gVuse>0?r.votos/gVuse*100:0,ele=r.eleitos||0;
-        const isF=ST.filter&&ST.filter.value===pts;
-        return`<div class="ccard ${isF?'filtered':''}" style="--pc:${c2}" onclick="togglePartyFilter('${pts.replace(/'/g,"\\'")}')">
+        const filt=ST.filter&&ST.filter.type==='partido'&&ST.filter.value===pts;
+        return`<div class="ccard ${filt?'filtered':''}" style="--pc:${c2}" onclick="toggleFilterPart('${pts.replace(/'/g,"\\'")}')">
           <div class="cdot"></div>
           <div class="cinfo"><div class="cnome">${pts}</div><div class="cpart">${ele>0?`${ele} eleito${ele>1?'s':''}`:'—'}</div></div>
           <div class="cvotos"><div class="cpct">${fp(pct)}</div><div class="cabs">${fv(r.votos)}</div></div>
-          <div class="cbar-wrap"><div class="cbar" style="width:${(r.votos/maxVuse*100).toFixed(1)}%"></div></div>
-        </div>`;
-      }).join('');
-
-    renderHistoryChart('chart-part', isMun?ST.munData:null);
+          <div class="cbar-wrap"><div class="cbar" style="width:${(r.votos/maxVu*100).toFixed(1)}%"></div></div>
+        </div>`;}).join('')}
+    </div>`;
+    buildChart('chart-part',isMun?ST.munData:null);
   }).catch(e=>console.error('renderPartidos:',e));
 }
 
-// ── Init ──────────────────────────────────────
+function render(){
+  if(ST.tab==='candidatos'){ST.mun&&ST.munData?renderMun():renderEstado();}
+  else renderPartidos();
+}
 async function init(){
   initMap();load(true);
   try{
@@ -857,17 +710,10 @@ async function init(){
     ST.mapaData=await get(`${BASE}/mapa/presidente_2022_t2.json`);
     renderChoropleth();buildLegenda();updateMapLabel();render();
   }catch(e){
-    console.error('Init error:',e);
-    document.getElementById('rp-content').innerHTML=`
-      <div class="empty" style="padding:40px 16px">
-        ⚠️ Erro ao carregar dados.<br><br>
-        Servidor local:<br>
-        <code style="font-size:10px;color:#666">python -m http.server 8080</code><br>
-        na pasta <code style="font-size:10px;color:#666">painel_rs/</code>
-      </div>`;
+    console.error('Init:',e);
+    document.getElementById('rp-content').innerHTML=`<div class="empty" style="padding:36px 16px">⚠️ Erro ao carregar dados.<br><br>Rode na pasta <code>painel_rs/</code>:<br><code style="font-size:10px;color:#666">python -m http.server 8080</code></div>`;
   }finally{load(false);}
 }
-
 window.addEventListener('DOMContentLoaded',init);
 </script>
 </body>
